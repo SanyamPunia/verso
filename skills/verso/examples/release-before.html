@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Release notes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; background: #f4f5f7; color: #111827; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 40px 20px; }
+  .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; box-shadow: 0 8px 24px rgba(17,24,39,.06); padding: 28px; }
+  .eyebrow { font-size: 13px; color: #2563eb; font-weight: 600; margin: 0; }
+  h1 { font-size: 24px; margin: 4px 0 4px; }
+  .sub { color: #6b7280; font-size: 14px; margin: 0 0 20px; }
+  h2 { font-size: 16px; margin: 26px 0 8px; display: flex; align-items: center; gap: 8px; }
+  p { font-size: 15px; line-height: 1.6; color: #374151; margin: 0 0 10px; }
+  .badge { font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 999px; background: #eff6ff; color: #1d4ed8; }
+  .badge.green { background: #ecfdf5; color: #047857; }
+  .progress { height: 8px; background: #e5e7eb; border-radius: 999px; overflow: hidden; margin: 8px 0 4px; }
+  .progress span { display: block; height: 100%; background: #2563eb; }
+  .meta { font-size: 13px; color: #6b7280; }
+  ol { padding-left: 20px; font-size: 15px; line-height: 1.8; color: #374151; }
+  code { background: #f3f4f6; padding: 1px 6px; border-radius: 5px; font-size: 13px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 10px; }
+  .stat { border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; }
+  .stat b { display: block; font-size: 20px; }
+  .stat span { font-size: 13px; color: #6b7280; }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <article class="card" aria-labelledby="t">
+      <p class="eyebrow">Version 2.4</p>
+      <h1 id="t">Release notes</h1>
+      <p class="sub">Released 4 November 2026</p>
+
+      <h2>Shared build cache <span class="badge">New</span></h2>
+      <p>Builds on every branch now read from one cache, so a branch starts warm from main. Average build time is now 42s, down from 51s.</p>
+
+      <h2>Default region <span class="badge green">Improved</span></h2>
+      <p>New projects deploy to Frankfurt first. The default region changed from iad1 to fra1.</p>
+      <div class="progress" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Rollout"><span style="width:72%"></span></div>
+      <p class="meta">Rollout 72% complete</p>
+
+      <h2>Upgrade</h2>
+      <ol>
+        <li>Update the CLI with <code>atlas upgrade</code></li>
+        <li>Run <code>atlas cache link</code> in each project</li>
+        <li>Deploy once to warm the cache</li>
+      </ol>
+
+      <h2>This month</h2>
+      <div class="stats">
+        <div class="stat"><b>96</b><span>Production deploys</span></div>
+        <div class="stat"><b>32</b><span>Preview deploys</span></div>
+        <div class="stat"><b>128</b><span>Total</span></div>
+      </div>
+    </article>
+  </main>
+</body>
+</html>

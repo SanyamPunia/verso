@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Release notes, manuscript</title>
+<link rel="stylesheet" href="../assets/manuscript.css" />
+<style>
+  /* Only the page around the converted portion. It is left as it was. */
+  body { margin: 0; background: #f4f5f7; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
+
+  /* Local layout for this example. */
+  .sheet { padding-top: clamp(2.5rem, 5vw, 3.5rem); }
+  .head { text-align: center; margin-bottom: 2rem; }
+  .head .ms-caption { margin: 0.4rem 0 0; }
+  .section h2 { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
+  .section p { margin: 0 0 0.6rem; }
+  .steps { list-style: none; margin: 0.4rem 0 0; padding: 0; display: grid; gap: 0.45rem; }
+  .steps li { display: grid; grid-template-columns: 1.6rem 1fr; align-items: baseline; }
+  .rollout { display: grid; gap: 0.35rem; margin: 0.8rem 0 0.2rem; max-width: 26rem; }
+  .rollout .ends { display: flex; justify-content: space-between; }
+  .fig { display: grid; justify-items: center; gap: 0.3rem; }
+  .sum-block { display: grid; gap: 0.3rem; justify-items: start; }
+  .sum-row { display: flex; gap: 0.8rem; align-items: baseline; }
+</style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ms-ink" x="-2%" y="-10%" width="104%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="3" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ms-line" x="-4%" y="-8%" width="108%" height="116%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ms-deckle" x="-3%" y="-3%" width="106%" height="106%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="2" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ms-wash" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" seed="5" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="22" xChannelSelector="R" yChannelSelector="G" result="d" />
+        <feGaussianBlur in="d" stdDeviation="1.4" />
+      </filter>
+    </defs>
+  </svg>
+
+  <main class="wrap">
+    <article class="ms-scope ms-page sheet" data-ms-paper="leicester" aria-labelledby="t">
+      <!-- The writing on the back of the leaf, read through it. Decorative. -->
+      <div class="ms-showthrough" aria-hidden="true">
+        della luna e come ella non a lume da se, ma tanto quanto il sole la vede tanto la allumina,
+        e di tale alluminatione tanto ne vediamo quanto quella ne vede noi. e la sua notte riceve
+        tanto di splendore quanto le nostre acque li prestano, riflettendo in lei la immagine del sole
+        il quale si specchia in tutte quelle acque che vedono il sole e la luna. la superfitie delle
+        acque del mare della luna e del mare della nostra terra e sempre piu o meno rugosa
+        della luna e come ella non a lume da se, ma tanto quanto il sole la vede tanto la allumina,
+        e di tale alluminatione tanto ne vediamo quanto quella ne vede noi. e la sua notte riceve
+        tanto di splendore quanto le nostre acque li prestano, riflettendo in lei la immagine del sole
+        il quale si specchia in tutte quelle acque che vedono il sole e la luna. la superfitie delle
+        acque del mare della luna e del mare della nostra terra e sempre piu o meno rugosa
+        della luna e come ella non a lume da se, ma tanto quanto il sole la vede tanto la allumina,
+        e di tale alluminatione tanto ne vediamo quanto quella ne vede noi. e la sua notte riceve
+        tanto di splendore quanto le nostre acque li prestano, riflettendo in lei la immagine del sole
+        il quale si specchia in tutte quelle acque che vedono il sole e la luna. la superfitie delle
+        acque del mare della luna e del mare della nostra terra e sempre piu o meno rugosa
+      </div>
+      <span class="ms-stain" aria-hidden="true" style="right: 7%; bottom: 8%"></span>
+      <span class="ms-folio-no" aria-hidden="true">24</span>
+
+      <header class="head">
+        <p class="ms-caption" style="margin:0">Version 2.4</p>
+        <h1 id="t" class="ms-title">Release notes</h1>
+        <p class="ms-caption">Released 4 November 2026</p>
+      </header>
+
+      <div class="ms-folio">
+        <div>
+          <section class="section">
+            <h2 class="ms-heading">Shared build cache <span class="ms-circled ms-circled-sanguine">New</span></h2>
+            <p class="ms-initial">Builds on every branch now read from one cache, so a branch starts warm
+              from main. Average build time is now <del>51s</del><ins>42s</ins>.</p>
+            <hr class="ms-endrule" />
+          </section>
+
+          <section class="section">
+            <h2 class="ms-heading">Default region <span class="ms-circled">Improved</span></h2>
+            <p class="ms-initial">New projects deploy to Frankfurt first. The default region changed from
+              <del><code>iad1</code></del><ins><code>fra1</code></ins>.</p>
+            <div class="rollout">
+              <div class="ms-scale" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Rollout" style="--value:.72"></div>
+              <div class="ends ms-caption"><span>Rollout</span><span>72% complete</span></div>
+            </div>
+            <hr class="ms-endrule" />
+          </section>
+
+          <section class="section">
+            <h2 class="ms-heading">Upgrade</h2>
+            <ol class="steps">
+              <li><span class="ms-figno" aria-hidden="true">1</span><span>Update the CLI with <code>atlas upgrade</code></span></li>
+              <li><span class="ms-figno" aria-hidden="true">2</span><span>Run <code>atlas cache link</code> in each project</span></li>
+              <li><span class="ms-figno" aria-hidden="true">3</span><span>Deploy once to warm the cache</span></li>
+            </ol>
+            <hr class="ms-endrule" />
+          </section>
+        </div>
+
+        <aside class="ms-margin" aria-label="Figures">
+          <figure class="fig ms-wash" style="margin:0">
+            <svg class="ms-sketch" viewBox="0 0 220 130" width="200" height="118" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+              <circle data-draw pathLength="1" cx="168" cy="62" r="40" stroke-width="1.1" />
+              <circle data-draw pathLength="1" cx="40" cy="78" r="11" stroke-width="1" />
+              <path d="M40 67 L168 22 M40 89 L168 102 M40 67 L168 102 M40 89 L168 22" stroke-width=".6" />
+              <path d="M29 78 L208 62" stroke-width=".5" stroke-dasharray="2 3" opacity=".7" />
+              <path d="M40 67 A 11 11 0 0 0 40 89 Z" fill="currentColor" fill-opacity=".28" stroke="none" />
+              <g font-family="IM Fell English, Georgia, serif" font-style="italic" font-size="10" fill="currentColor" stroke="none">
+                <text x="165" y="16">a</text><text x="165" y="114">b</text><text x="22" y="82">c</text>
+              </g>
+            </svg>
+          </figure>
+
+          <div class="sum-block ms-tilt-s">
+            <h2 class="ms-heading" style="font-size:1.1rem">This month</h2>
+            <div class="sum-row">
+              <div class="ms-sum" aria-hidden="true"><span>96</span><span>32</span><span>128</span></div>
+              <div class="ms-sum ms-text-2" style="justify-items:start; font-style:italic">
+                <span>production</span><span>preview</span><span>total</span>
+              </div>
+            </div>
+            <p class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">96 production deploys and 32 preview deploys, 128 in total.</p>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+  <script>
+    const paper = new URLSearchParams(location.search).get("paper");
+    if (paper) document.querySelector(".ms-scope").dataset.msPaper = paper;
+  </script>
+</body>
+</html>

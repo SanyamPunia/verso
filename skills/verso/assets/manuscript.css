@@ -1,0 +1,826 @@
+/*
+ * manuscript.css
+ * A High Renaissance working-notebook theme: iron gall ink on laid rag paper.
+ * Everything is scoped under .ms-scope, so only the portion you wrap changes.
+ * Requires the filters in defs.svg to be mounted once in the document.
+ *
+ * Contrast (measured on --ms-paper):
+ *   --ms-ink      10.6:1  body text
+ *   --ms-ink-2     6.3:1  secondary text, rules
+ *   --ms-ink-3     4.9:1  captions, the floor for any real text
+ *   --ms-sanguine  5.9:1  the one accent
+ *   --ms-wash      decorative only, never text
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..600;1,400..600&family=IM+Fell+English:ital@0;1&family=La+Belle+Aurore&display=swap");
+
+.ms-scope {
+  /* Paper */
+  --ms-paper: #ebe4d3;
+  --ms-paper-light: #f2ede1; /* later repair, infill */
+  --ms-paper-dark: #d9cdb2; /* edges, handled areas */
+  --ms-age: rgba(120, 88, 48, 0.2); /* the toned band at the sheet's edge */
+  --ms-glow: transparent; /* a warmer centre, for the yellowed sheets */
+  --ms-edge: url(#ms-deckle); /* torn, or cut for a bound notebook */
+
+  /* Iron gall ink, oxidised to browns */
+  --ms-ink: #3f2a1a;
+  --ms-ink-2: #6b4a30;
+  --ms-ink-3: #7d5a3a;
+  --ms-wash: #b08a5e;
+  --ms-wash-soft: rgba(176, 138, 94, 0.18);
+  --ms-hatch: rgba(107, 74, 48, 0.32);
+
+  /* Red chalk, the one accent */
+  --ms-sanguine: #8e3b23;
+  --ms-sanguine-soft: rgba(142, 59, 35, 0.12);
+
+  /* Type */
+  --ms-font-text: "EB Garamond", "Garamond", "Iowan Old Style", Georgia, serif;
+  --ms-font-display: "IM Fell English", "EB Garamond", Georgia, serif;
+  --ms-font-hand: "La Belle Aurore", "Snell Roundhand", cursive;
+
+  /* Hand-drawn radius, the only radius in the theme */
+  --ms-radius: 255px 12px 225px 12px / 12px 225px 12px 255px;
+
+  /* A hand line, used for rules, underlines and input baselines */
+  --ms-rule: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 6' preserveAspectRatio='none'><path d='M1 3.4 C 34 2.2, 70 4.3, 112 3 S 190 2.4, 239 3.6' fill='none' stroke='%236b4a30' stroke-width='1.15' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-rule-double: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 8' preserveAspectRatio='none'><path d='M1 2.6 C 40 1.6, 80 3.6, 120 2.4 S 200 3.2, 239 2.2' fill='none' stroke='%236b4a30' stroke-width='1.1' stroke-linecap='round' vector-effect='non-scaling-stroke'/><path d='M3 6 C 50 5.2, 90 6.8, 140 5.6 S 210 6.4, 236 5.4' fill='none' stroke='%236b4a30' stroke-width='.8' stroke-linecap='round' opacity='.7' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-rule-sanguine: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 6' preserveAspectRatio='none'><path d='M1 3.4 C 34 2.2, 70 4.3, 112 3 S 190 2.4, 239 3.6' fill='none' stroke='%238e3b23' stroke-width='1.3' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>");
+
+  /* The pen flourish that closes a ruled-off paragraph */
+  --ms-hook: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 12'><path d='M1 6.2 C 8 5.6, 14 6.8, 19 5.8 C 23 5, 24.5 2.6, 22.5 1.6 C 20.5 0.8, 19.5 4, 22 6.4 C 23.5 7.8, 24.8 9.4, 24 11' fill='none' stroke='%236b4a30' stroke-width='1.1' stroke-linecap='round'/></svg>");
+
+  /* Paper texture tiles, generated, nothing is fetched */
+  --ms-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .1  .45 0 0 0 -.14'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --ms-mottle: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='m'><feTurbulence type='fractalNoise' baseFrequency='.008' numOctaves='3' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .32  0 0 0 0 .16  .5 0 0 0 -.18'/></filter><rect width='100%' height='100%' filter='url(%23m)'/></svg>");
+
+  color: var(--ms-ink);
+  font-family: var(--ms-font-text);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  text-rendering: optimizeLegibility;
+  /* A trace of ink bleed on every glyph */
+  text-shadow: 0 0 0.6px rgba(63, 42, 26, 0.35);
+}
+
+.ms-scope *,
+.ms-scope *::before,
+.ms-scope *::after {
+  box-sizing: border-box;
+}
+
+.ms-scope ::selection {
+  background: var(--ms-sanguine-soft);
+  color: var(--ms-ink);
+}
+
+/* ------------------------------------------------------------------ */
+/* Paper presets. Set data-ms-paper on the .ms-scope root.             */
+/* windsor is the default and needs no attribute.                     */
+/* Each preset is a full set of tokens, measured for contrast.        */
+/* ------------------------------------------------------------------ */
+
+/* Codex Leicester and the Vitruvian sheet: paper yellowed to straw, ink gone red-brown, a strong toned band at the edge. */
+.ms-scope[data-ms-paper="leicester"] {
+  --ms-paper: #ecd9a8;
+  --ms-paper-light: #f3e6c2;
+  --ms-paper-dark: #d9be82;
+  --ms-age: rgba(140, 92, 30, 0.38);
+  --ms-glow: rgba(255, 238, 190, 0.45);
+  --ms-edge: url(#ms-deckle);
+  --ms-ink: #45200c;
+  --ms-ink-2: #6e3416;
+  --ms-ink-3: #7d3f1f;
+  --ms-wash: #c79a52;
+  --ms-wash-soft: rgba(199, 154, 82, 0.2);
+  --ms-hatch: rgba(110, 52, 22, 0.32);
+  --ms-sanguine: #962b17;
+  --ms-sanguine-soft: rgba(150, 43, 23, 0.12);
+  --ms-rule: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 6' preserveAspectRatio='none'><path d='M1 3.4 C 34 2.2, 70 4.3, 112 3 S 190 2.4, 239 3.6' fill='none' stroke='%236e3416' stroke-width='1.15' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-rule-double: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 8' preserveAspectRatio='none'><path d='M1 2.6 C 40 1.6, 80 3.6, 120 2.4 S 200 3.2, 239 2.2' fill='none' stroke='%236e3416' stroke-width='1.1' stroke-linecap='round' vector-effect='non-scaling-stroke'/><path d='M3 6 C 50 5.2, 90 6.8, 140 5.6 S 210 6.4, 236 5.4' fill='none' stroke='%236e3416' stroke-width='.8' stroke-linecap='round' opacity='.7' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-rule-sanguine: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 6' preserveAspectRatio='none'><path d='M1 3.4 C 34 2.2, 70 4.3, 112 3 S 190 2.4, 239 3.6' fill='none' stroke='%23962b17' stroke-width='1.3' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-hook: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 12'><path d='M1 6.2 C 8 5.6, 14 6.8, 19 5.8 C 23 5, 24.5 2.6, 22.5 1.6 C 20.5 0.8, 19.5 4, 22 6.4 C 23.5 7.8, 24.8 9.4, 24 11' fill='none' stroke='%236e3416' stroke-width='1.1' stroke-linecap='round'/></svg>");
+}
+
+/* Codex Arundel: grey paper, the darkest ink of the four, scattered sketches, water stains. */
+.ms-scope[data-ms-paper="arundel"] {
+  --ms-paper: #e6e0d2;
+  --ms-paper-light: #efeadf;
+  --ms-paper-dark: #d2c8b3;
+  --ms-age: rgba(90, 70, 45, 0.22);
+  --ms-glow: transparent;
+  --ms-edge: url(#ms-deckle);
+  --ms-ink: #2e2014;
+  --ms-ink-2: #57402c;
+  --ms-ink-3: #6e5640;
+  --ms-wash: #a68b68;
+  --ms-wash-soft: rgba(166, 139, 104, 0.18);
+  --ms-hatch: rgba(87, 64, 44, 0.32);
+  --ms-sanguine: #8e3b23;
+  --ms-sanguine-soft: rgba(142, 59, 35, 0.12);
+  --ms-rule: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 6' preserveAspectRatio='none'><path d='M1 3.4 C 34 2.2, 70 4.3, 112 3 S 190 2.4, 239 3.6' fill='none' stroke='%2357402c' stroke-width='1.15' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-rule-double: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 8' preserveAspectRatio='none'><path d='M1 2.6 C 40 1.6, 80 3.6, 120 2.4 S 200 3.2, 239 2.2' fill='none' stroke='%2357402c' stroke-width='1.1' stroke-linecap='round' vector-effect='non-scaling-stroke'/><path d='M3 6 C 50 5.2, 90 6.8, 140 5.6 S 210 6.4, 236 5.4' fill='none' stroke='%2357402c' stroke-width='.8' stroke-linecap='round' opacity='.7' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-rule-sanguine: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 6' preserveAspectRatio='none'><path d='M1 3.4 C 34 2.2, 70 4.3, 112 3 S 190 2.4, 239 3.6' fill='none' stroke='%238e3b23' stroke-width='1.3' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-hook: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 12'><path d='M1 6.2 C 8 5.6, 14 6.8, 19 5.8 C 23 5, 24.5 2.6, 22.5 1.6 C 20.5 0.8, 19.5 4, 22 6.4 C 23.5 7.8, 24.8 9.4, 24 11' fill='none' stroke='%2357402c' stroke-width='1.1' stroke-linecap='round'/></svg>");
+}
+
+/* Codex Forster: a small bound pocket notebook. Lighter, cleaner paper, a cut edge, not a torn one. */
+.ms-scope[data-ms-paper="forster"] {
+  --ms-paper: #f1ead8;
+  --ms-paper-light: #f6f1e4;
+  --ms-paper-dark: #dfd3b8;
+  --ms-age: rgba(120, 88, 48, 0.14);
+  --ms-glow: transparent;
+  --ms-edge: url(#ms-line);
+  --ms-ink: #3f2a1a;
+  --ms-ink-2: #6b4a30;
+  --ms-ink-3: #7d5a3a;
+  --ms-wash: #b08a5e;
+  --ms-wash-soft: rgba(176, 138, 94, 0.18);
+  --ms-hatch: rgba(107, 74, 48, 0.32);
+  --ms-sanguine: #8e3b23;
+  --ms-sanguine-soft: rgba(142, 59, 35, 0.12);
+  --ms-rule: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 6' preserveAspectRatio='none'><path d='M1 3.4 C 34 2.2, 70 4.3, 112 3 S 190 2.4, 239 3.6' fill='none' stroke='%236b4a30' stroke-width='1.15' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-rule-double: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 8' preserveAspectRatio='none'><path d='M1 2.6 C 40 1.6, 80 3.6, 120 2.4 S 200 3.2, 239 2.2' fill='none' stroke='%236b4a30' stroke-width='1.1' stroke-linecap='round' vector-effect='non-scaling-stroke'/><path d='M3 6 C 50 5.2, 90 6.8, 140 5.6 S 210 6.4, 236 5.4' fill='none' stroke='%236b4a30' stroke-width='.8' stroke-linecap='round' opacity='.7' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-rule-sanguine: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 6' preserveAspectRatio='none'><path d='M1 3.4 C 34 2.2, 70 4.3, 112 3 S 190 2.4, 239 3.6' fill='none' stroke='%238e3b23' stroke-width='1.3' stroke-linecap='round' vector-effect='non-scaling-stroke'/></svg>");
+  --ms-hook: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 12'><path d='M1 6.2 C 8 5.6, 14 6.8, 19 5.8 C 23 5, 24.5 2.6, 22.5 1.6 C 20.5 0.8, 19.5 4, 22 6.4 C 23.5 7.8, 24.8 9.4, 24 11' fill='none' stroke='%236b4a30' stroke-width='1.1' stroke-linecap='round'/></svg>");
+}
+
+/* ------------------------------------------------------------------ */
+/* The sheet                                                           */
+/* ------------------------------------------------------------------ */
+
+.ms-page {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+}
+
+/* Paper lives on a pseudo element so the deckle filter roughens its edge
+   without touching the text. */
+.ms-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--ms-paper);
+  background-image:
+    /* foxing */
+    radial-gradient(circle at 82% 14%, rgba(150, 95, 40, 0.1) 0 0.35rem, transparent 1.6rem),
+    radial-gradient(circle at 12% 78%, rgba(150, 95, 40, 0.08) 0 0.25rem, transparent 1.2rem),
+    radial-gradient(circle at 64% 91%, rgba(150, 95, 40, 0.07) 0 0.2rem, transparent 0.9rem),
+    /* age: darker toward the handled edges, warmer in the middle */
+    radial-gradient(ellipse at 50% 45%, var(--ms-glow) 0%, transparent 50%, var(--ms-age) 100%),
+    /* laid lines, the wire mould's fine horizontals */
+    repeating-linear-gradient(0deg, rgba(80, 55, 30, 0.035) 0 1px, transparent 1px 3px),
+    /* chain lines, the mould's widely spaced verticals */
+    repeating-linear-gradient(90deg, transparent 0 2.4rem, rgba(80, 55, 30, 0.055) 2.4rem calc(2.4rem + 1px), transparent calc(2.4rem + 1px) 2.6rem),
+    var(--ms-mottle),
+    var(--ms-grain);
+  background-size: auto, auto, auto, auto, auto, auto, 600px 600px, 220px 220px;
+  filter: var(--ms-edge);
+}
+
+/* A later repair: lighter paper set into the sheet, with its own torn edge. */
+.ms-repair {
+  position: relative;
+  isolation: isolate;
+}
+.ms-repair::before {
+  content: "";
+  position: absolute;
+  inset: -0.75rem;
+  z-index: -1;
+  background: var(--ms-paper-light) var(--ms-grain);
+  background-size: 220px 220px;
+  box-shadow: inset 0 0 1.5rem rgba(120, 88, 48, 0.08);
+  filter: url(#ms-deckle);
+}
+
+/* ------------------------------------------------------------------ */
+/* Composition                                                         */
+/* ------------------------------------------------------------------ */
+
+/* A working folio: the main column and a margin for notes. */
+.ms-folio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(9rem, 15rem);
+  gap: 2.25rem;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .ms-folio {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.ms-margin {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+/* A dense column of text, kept to a short measure the way the hand fills it. */
+.ms-column {
+  max-width: 38ch;
+}
+
+/* Small rotations: nothing on a notebook page is set square. Keep them small. */
+.ms-tilt-l { transform: rotate(-1.2deg); }
+.ms-tilt-r { transform: rotate(0.9deg); }
+.ms-tilt-s { transform: rotate(-0.4deg); }
+
+/* ------------------------------------------------------------------ */
+/* Type                                                                */
+/* ------------------------------------------------------------------ */
+
+.ms-title {
+  font-family: var(--ms-font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: 0.005em;
+  margin: 0;
+  filter: url(#ms-ink);
+}
+
+.ms-heading {
+  font-family: var(--ms-font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.35rem;
+  background: var(--ms-rule-double) left bottom / 100% 8px no-repeat;
+  display: inline-block;
+}
+
+.ms-text-2 { color: var(--ms-ink-2); }
+.ms-text-3 { color: var(--ms-ink-3); }
+
+.ms-caption {
+  color: var(--ms-ink-3);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* A note in the margin, in the quick hand. Still real, still readable. */
+.ms-note {
+  font-family: var(--ms-font-hand);
+  color: var(--ms-ink-2);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+
+/* Decorative mirror script. Always aria-hidden, never real content. */
+.ms-mirror {
+  font-family: var(--ms-font-hand);
+  color: var(--ms-ink-3);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  opacity: 0.55;
+  transform: scaleX(-1);
+  text-align: left;
+  user-select: none;
+  pointer-events: none;
+}
+
+.ms-scope a,
+.ms-link {
+  color: var(--ms-sanguine);
+  text-decoration: none;
+  padding-bottom: 0.1em;
+  background: var(--ms-rule-sanguine) left bottom / 100% 5px no-repeat;
+}
+.ms-scope a:hover,
+.ms-link:hover {
+  color: var(--ms-ink);
+}
+
+.ms-scope code,
+.ms-scope kbd {
+  /* Code stays code: there is no period face for it. Keep it quiet in ink. */
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.86em;
+  color: var(--ms-ink-2);
+  background: var(--ms-wash-soft);
+  padding: 0.05em 0.35em;
+  border-radius: var(--ms-radius);
+  text-shadow: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Lines, frames and shading                                           */
+/* ------------------------------------------------------------------ */
+
+.ms-rule {
+  height: 6px;
+  border: 0;
+  margin: 1.5rem 0;
+  background: var(--ms-rule) center / 100% 6px no-repeat;
+}
+
+/* A loose pen box, gone over twice, as around the blocks of notes. */
+.ms-frame {
+  position: relative;
+  padding: 1rem 1.15rem;
+}
+.ms-frame::before,
+.ms-frame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border: 1.2px solid var(--ms-ink-2);
+  border-radius: var(--ms-radius);
+  filter: url(#ms-line);
+}
+.ms-frame::before {
+  inset: 0;
+}
+.ms-frame::after {
+  inset: 2px -3px -2px 2px;
+  opacity: 0.45;
+  transform: rotate(-0.5deg);
+}
+
+.ms-frame-sanguine::before,
+.ms-frame-sanguine::after {
+  border-color: var(--ms-sanguine);
+}
+
+/* Hatching. The page has no drop shadows: depth is cross-hatched ink. */
+.ms-hatch {
+  background-image: repeating-linear-gradient(-45deg, var(--ms-hatch) 0 1px, transparent 1px 5px);
+}
+.ms-crosshatch {
+  background-image:
+    repeating-linear-gradient(-45deg, var(--ms-hatch) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(45deg, rgba(107, 74, 48, 0.2) 0 1px, transparent 1px 6px);
+}
+
+/* A hatched cast shadow behind a block, offset down and right. */
+.ms-cast {
+  position: relative;
+  isolation: isolate;
+}
+.ms-cast::after {
+  content: "";
+  position: absolute;
+  inset: 0.45rem -0.45rem -0.45rem 0.45rem;
+  z-index: -1;
+  background-image: repeating-linear-gradient(-45deg, var(--ms-hatch) 0 1px, transparent 1px 4px);
+  border-radius: var(--ms-radius);
+  filter: url(#ms-line);
+}
+
+/* A sepia wash pooled behind a sketch or a figure. */
+.ms-wash {
+  position: relative;
+  isolation: isolate;
+}
+.ms-wash::before {
+  content: "";
+  position: absolute;
+  inset: -0.5rem;
+  z-index: -1;
+  background: radial-gradient(ellipse at 45% 50%, rgba(176, 138, 94, 0.28), rgba(176, 138, 94, 0.08) 60%, transparent 72%);
+  filter: url(#ms-wash);
+}
+
+/* Sketches drawn in ink. Give paths pathLength="1" to draw them on. */
+.ms-sketch {
+  color: var(--ms-ink-2);
+  filter: url(#ms-ink);
+}
+.ms-sketch [data-draw] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ms-draw 1.8s cubic-bezier(0.3, 0.6, 0.3, 1) forwards;
+}
+@keyframes ms-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Pictures sink into the paper as if washed in sepia. */
+.ms-plate img,
+.ms-plate video {
+  filter: grayscale(1) sepia(0.7) contrast(1.05) brightness(0.96);
+  mix-blend-mode: multiply;
+}
+
+/* ------------------------------------------------------------------ */
+/* Controls                                                            */
+/* ------------------------------------------------------------------ */
+
+.ms-button {
+  position: relative;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ms-ink);
+  font-family: var(--ms-font-display);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  border-radius: var(--ms-radius);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+.ms-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.2px solid currentColor;
+  border-radius: var(--ms-radius);
+  filter: url(#ms-line);
+  pointer-events: none;
+}
+.ms-button:hover {
+  background-color: var(--ms-wash-soft);
+}
+.ms-button:active {
+  background-color: rgba(176, 138, 94, 0.3);
+}
+.ms-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* The primary action is the one place the red chalk is spent. */
+.ms-button-primary {
+  color: var(--ms-sanguine);
+  background-image: repeating-linear-gradient(-45deg, rgba(142, 59, 35, 0.14) 0 1px, transparent 1px 5px);
+}
+.ms-button-primary:hover {
+  background-color: var(--ms-sanguine-soft);
+}
+
+/* A quiet action is a word with a hand line under it. */
+.ms-button-quiet {
+  padding-inline: 0.2rem;
+  border-radius: 0;
+  background: var(--ms-rule) left bottom 0.25rem / 100% 5px no-repeat;
+}
+.ms-button-quiet::before { display: none; }
+.ms-button-quiet:hover { background-color: transparent; color: var(--ms-sanguine); }
+
+.ms-scope :focus-visible {
+  outline: 1.5px solid var(--ms-sanguine);
+  outline-offset: 4px;
+  border-radius: var(--ms-radius);
+}
+
+/* Fields are written on a ruled line, never in a box. */
+.ms-field {
+  display: grid;
+  gap: 0.25rem;
+}
+.ms-label {
+  font-family: var(--ms-font-display);
+  font-style: italic;
+  color: var(--ms-ink-2);
+  font-size: 0.98rem;
+}
+.ms-input {
+  appearance: none;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: var(--ms-rule) left bottom / 100% 6px no-repeat;
+  color: var(--ms-ink);
+  font: inherit;
+  padding: 0.3rem 0.1rem 0.45rem;
+  transition: background-color 200ms ease;
+}
+.ms-input::placeholder {
+  font: inherit;
+  color: var(--ms-ink-3);
+  opacity: 0.85;
+  font-style: italic;
+}
+.ms-input:focus-visible {
+  outline: none;
+  background:
+    var(--ms-rule-sanguine) left bottom / 100% 6px no-repeat,
+    var(--ms-sanguine-soft);
+}
+textarea.ms-input {
+  resize: vertical;
+  min-height: 5.5rem;
+  /* Ruled lines for each line of writing */
+  background:
+    repeating-linear-gradient(transparent 0 calc(1.55em - 1px), rgba(107, 74, 48, 0.35) calc(1.55em - 1px) 1.55em) 0 0.3rem / 100% auto;
+  line-height: 1.55em;
+}
+
+/* A checkbox drawn as a small ink square, marked with a cross. */
+.ms-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+.ms-check input {
+  appearance: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  border: 1.2px solid var(--ms-ink-2);
+  border-radius: 3px 1px 4px 2px;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+.ms-check input::after {
+  content: "";
+  width: 0.85rem;
+  height: 0.85rem;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M1.5 2 C 4 4.5, 7 7.6, 10.6 10.4 M10.2 1.6 C 7.4 4.2, 4.6 7.5, 1.8 10.6' fill='none' stroke='%238e3b23' stroke-width='1.6' stroke-linecap='round'/></svg>") center / contain no-repeat;
+  transform: scale(0);
+  transition: transform 160ms cubic-bezier(0.3, 0.6, 0.3, 1);
+}
+.ms-check input:checked::after {
+  transform: scale(1);
+}
+
+/* A label circled by hand, in place of a pill badge. */
+.ms-circled {
+  position: relative;
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  font-family: var(--ms-font-display);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ms-ink-2);
+}
+.ms-circled::before {
+  content: "";
+  position: absolute;
+  inset: -0.1rem -0.1rem -0.05rem -0.15rem;
+  border: 1px solid currentColor;
+  border-radius: 50% 45% 55% 48% / 60% 50% 52% 45%;
+  transform: rotate(-3deg);
+  filter: url(#ms-line);
+}
+.ms-circled-sanguine { color: var(--ms-sanguine); }
+
+/* A ledger: rows on hand rules, values on a dotted leader. */
+.ms-ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ms-ledger > li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.55rem;
+  background: var(--ms-rule) left bottom / 100% 5px no-repeat;
+}
+.ms-leader {
+  flex: 1;
+  min-width: 1rem;
+  border-bottom: 1.5px dotted rgba(107, 74, 48, 0.55);
+  transform: translateY(-0.3em);
+}
+
+/* ------------------------------------------------------------------ */
+/* Marks from the other codices                                        */
+/* ------------------------------------------------------------------ */
+
+/* Leicester: a paragraph ruled off with a pen line and a closing flourish.
+   Use under the last line of a block, never between every paragraph. */
+.ms-endrule {
+  height: 12px;
+  border: 0;
+  margin: 0.4rem 0 1.4rem;
+  background:
+    var(--ms-hook) right center / 26px 12px no-repeat,
+    var(--ms-rule) left center / calc(100% - 22px) 6px no-repeat;
+}
+
+/* Leicester: a large plain initial that marks the start of a section.
+   Ink only, no gold, no box. Put it on the block's first paragraph. */
+.ms-initial::first-letter {
+  float: left;
+  font-family: var(--ms-font-display);
+  font-size: 3.1em;
+  line-height: 0.82;
+  margin: 0.06em 0.14em 0 0;
+  color: var(--ms-ink);
+}
+
+/* Show-through: the writing on the back of the sheet, read through the
+   paper, faint and mirrored. Decorative only, always aria-hidden.
+   Put it first inside the .ms-page, it paints above the paper and below
+   everything else. */
+.ms-showthrough {
+  position: absolute;
+  inset: 8% 6%;
+  z-index: -1;
+  overflow: hidden;
+  font-family: var(--ms-font-hand);
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--ms-ink);
+  opacity: 0.07;
+  transform: scaleX(-1);
+  filter: blur(0.4px);
+  mix-blend-mode: multiply;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* A water stain with its tide line, darker at the rim where it dried.
+   Absolute, decorative, at most one per surface, never under text. */
+.ms-stain {
+  position: absolute;
+  z-index: -1;
+  width: 7rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(150, 100, 40, 0.08) 0 62%, rgba(130, 85, 35, 0.24) 86%, transparent 100%);
+  filter: url(#ms-wash);
+  pointer-events: none;
+}
+
+/* Two leaves of an open codex, with the fold between them. */
+.ms-spread {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 4.5rem);
+}
+.ms-spread::before {
+  content: "";
+  position: absolute;
+  top: -3rem;
+  bottom: -3rem;
+  left: 50%;
+  width: 3.5rem;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(110, 78, 40, 0.16) 46%, rgba(80, 55, 30, 0.26) 50%, rgba(110, 78, 40, 0.16) 54%, transparent);
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  .ms-spread { grid-template-columns: 1fr; }
+  .ms-spread::before { display: none; }
+}
+
+/* Forster: a bound pocket notebook. The leaves behind show as a stack of
+   edges down the binding side. Pair with data-ms-paper="forster". */
+.ms-bound {
+  margin-left: 0.9rem;
+}
+.ms-bound::after {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: -0.9rem;
+  width: 0.9rem;
+  z-index: -2;
+  background:
+    repeating-linear-gradient(90deg, var(--ms-paper-light) 0 2px, var(--ms-paper-dark) 2px 3px),
+    var(--ms-paper);
+  border-radius: 4px 0 0 4px;
+}
+
+/* A folio number in the corner, in the quick hand. */
+.ms-folio-no {
+  position: absolute;
+  top: 1rem;
+  right: 1.4rem;
+  font-family: var(--ms-font-hand);
+  color: var(--ms-ink-3);
+  font-size: 1rem;
+}
+
+/* Forster: figure numbers written down the outer margin beside each
+   drawing or step. Use for step numbers, ranks and list indices. */
+.ms-figno {
+  font-family: var(--ms-font-hand);
+  color: var(--ms-ink-2);
+  font-size: 1.1rem;
+  line-height: 1;
+  font-variant-numeric: normal;
+}
+
+/* A small italic letter that names a point of a diagram: a, b, c. */
+.ms-point {
+  font-family: var(--ms-font-display);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ms-ink-2);
+}
+
+/* Forster: a correction. The old word struck with a pen line, the new one
+   written after it. Mark it up as <del> and <ins>. */
+.ms-scope del,
+.ms-struck {
+  color: var(--ms-ink-3);
+  text-decoration: none;
+  background: var(--ms-rule) left 58% / 100% 5px no-repeat;
+}
+.ms-scope ins {
+  text-decoration: none;
+  font-family: var(--ms-font-hand);
+  color: var(--ms-ink);
+  margin-left: 0.3em;
+}
+
+/* Arundel: a sum worked in the margin. Figures stacked right, a ruled
+   line, the result under it. Use for totals and breakdowns. */
+.ms-sum {
+  display: inline-grid;
+  justify-items: end;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-family: var(--ms-font-text);
+  line-height: 1.35;
+}
+.ms-sum > :last-child {
+  padding-top: 0.2rem;
+  margin-top: 0.15rem;
+  background: var(--ms-rule) left top / 100% 5px no-repeat;
+  font-weight: 500;
+}
+
+/* Vitruvian sheet: the scale drawn under the figure, its end segments
+   divided finer. Use for a progress bar, a meter or the track of a range.
+   Set --value from 0 to 1. The element keeps its role and aria values. */
+.ms-scale {
+  --value: 0;
+  position: relative;
+  height: 1.1rem;
+  background:
+    /* finer divisions in the first and the last tenth */
+    repeating-linear-gradient(90deg, var(--ms-ink-2) 0 1px, transparent 1px 20%) left bottom / 10% 0.35rem no-repeat,
+    repeating-linear-gradient(90deg, var(--ms-ink-2) 0 1px, transparent 1px 20%) right bottom / 10% 0.35rem no-repeat,
+    /* the main divisions */
+    repeating-linear-gradient(90deg, var(--ms-ink-2) 0 1px, transparent 1px 10%) left bottom / calc(100% + 1px) 0.7rem no-repeat,
+    /* the base line */
+    var(--ms-rule) left bottom / 100% 5px no-repeat;
+}
+.ms-scale::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.15rem;
+  height: 0.3rem;
+  width: calc(var(--value) * 100%);
+  background-image: repeating-linear-gradient(-45deg, var(--ms-sanguine) 0 1px, transparent 1px 3px);
+  transition: width 300ms cubic-bezier(0.3, 0.6, 0.3, 1);
+}
+.ms-scale::after {
+  content: "";
+  position: absolute;
+  bottom: -0.15rem;
+  left: calc(var(--value) * 100%);
+  height: 1.3rem;
+  width: 1.5px;
+  background: var(--ms-sanguine);
+  transform: translateX(-50%) rotate(4deg);
+  transition: left 300ms cubic-bezier(0.3, 0.6, 0.3, 1);
+}
+
+/* Vitruvian sheet: the ground drawn as close horizontal hatching under a
+   figure, fading out at both ends. */
+.ms-ground {
+  height: 0.8rem;
+  background: repeating-linear-gradient(0deg, var(--ms-hatch) 0 1px, transparent 1px 3px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion and print                                            */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-sketch [data-draw] {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .ms-scope *,
+  .ms-scope *::before,
+  .ms-scope *::after {
+    transition-duration: 0ms !important;
+  }
+}
+
+@media print {
+  .ms-page::before,
+  .ms-repair::before {
+    filter: none;
+  }
+  .ms-showthrough,
+  .ms-stain {
+    display: none;
+  }
+}

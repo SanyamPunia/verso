@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manuscript UI, before and after</title>
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; background: #eceae6; color: #222; }
+  header { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; padding: 12px 16px; }
+  header strong { margin-right: auto; font-weight: 600; }
+  button, select { font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid #ccc; background: #fff; cursor: pointer; }
+  button[aria-pressed="true"] { background: #222; color: #fff; border-color: #222; }
+  label { font-size: 13px; color: #555; display: flex; align-items: center; gap: .4rem; }
+  .panes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 8px 8px; height: calc(100vh - 62px); }
+  .panes[data-view="before"] { grid-template-columns: 1fr 0; }
+  .panes[data-view="after"] { grid-template-columns: 0 1fr; }
+  iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; background: #fff; }
+</style>
+</head>
+<body>
+  <header>
+    <strong>Manuscript UI</strong>
+    <label>Example
+      <select id="example">
+        <option value="settings">Settings card</option>
+        <option value="release">Release notes</option>
+      </select>
+    </label>
+    <label>Paper
+      <select id="paper">
+        <option value="">Default for the example</option>
+        <option value="windsor">Windsor</option>
+        <option value="leicester">Leicester</option>
+        <option value="arundel">Arundel</option>
+        <option value="forster">Forster</option>
+      </select>
+    </label>
+    <button type="button" data-view="both" aria-pressed="true">Side by side</button>
+    <button type="button" data-view="before" aria-pressed="false">Before</button>
+    <button type="button" data-view="after" aria-pressed="false">After</button>
+  </header>
+  <div class="panes" data-view="both">
+    <iframe id="before" title="Before"></iframe>
+    <iframe id="after" title="After"></iframe>
+  </div>
+  <script>
+    const files = {
+      settings: ["before.html", "after.html"],
+      release: ["release-before.html", "release-after.html"],
+    };
+    const ex = document.getElementById("example");
+    const paper = document.getElementById("paper");
+    function load() {
+      const [b, a] = files[ex.value];
+      document.getElementById("before").src = b;
+      document.getElementById("after").src = a + (paper.value ? "?paper=" + paper.value : "");
+    }
+    ex.addEventListener("change", load);
+    paper.addEventListener("change", load);
+    load();
+    const panes = document.querySelector(".panes");
+    for (const b of document.querySelectorAll("header button")) {
+      b.addEventListener("click", () => {
+        panes.dataset.view = b.dataset.view;
+        for (const o of document.querySelectorAll("header button")) o.setAttribute("aria-pressed", String(o === b));
+      });
+    }
+  </script>
+</body>
+</html>

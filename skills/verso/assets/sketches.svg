@@ -1,0 +1,76 @@
+<!--
+  Pen sketches to copy into a page. Each is a standalone <svg> that draws in
+  currentColor, so wrap it in .ms-sketch to give it the ink tone and the quill
+  filter. A path carrying data-draw and pathLength="1" draws itself on.
+  All are decorative: keep aria-hidden="true" on them.
+  Use one sketch per surface. Two is the most a page can carry.
+-->
+
+<!-- 1. Construction: a circle and a square on one centre, with the proportion
+        arcs and tick marks of a geometry study. Good beside a heading. -->
+<svg class="ms-sketch" viewBox="0 0 160 160" width="160" height="160" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+  <circle data-draw pathLength="1" cx="80" cy="82" r="58" stroke-width="1.1" />
+  <path data-draw pathLength="1" d="M28 30.5 L131 29 L132.5 134 L27 135 Z" stroke-width="1" />
+  <path d="M80 18 L80 146 M16 82 L144 82" stroke-width=".6" stroke-dasharray="2 3" opacity=".7" />
+  <path d="M28 30 L132 134 M132 30 L28 134" stroke-width=".55" opacity=".55" />
+  <path d="M42 132 A 70 70 0 0 1 118 32" stroke-width=".7" opacity=".6" />
+  <path d="M74 140 l12 0 M74 24 l12 0 M22 76 l0 12 M138 76 l0 12" stroke-width=".9" />
+  <circle cx="80" cy="82" r="1.6" fill="currentColor" stroke="none" />
+</svg>
+
+<!-- 2. Mechanism: a toothed wheel and its pinion, the kind of study that sits
+        beside notes on machines. Good for settings, tools, systems. -->
+<svg class="ms-sketch" viewBox="0 0 180 130" width="180" height="130" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+  <circle data-draw pathLength="1" cx="62" cy="66" r="40" stroke-width="1.1" />
+  <circle cx="62" cy="66" r="31" stroke-width=".7" />
+  <circle cx="62" cy="66" r="4" stroke-width="1" />
+  <path d="M62 26 l0 -7 M90.3 37.7 l5 -5 M102 66 l7 0 M90.3 94.3 l5 5 M62 106 l0 7 M33.7 94.3 l-5 5 M22 66 l-7 0 M33.7 37.7 l-5 -5
+           M77.3 29 l2.7 -6.5 M99 50.7 l6.5 -2.7 M99 81.3 l6.5 2.7 M77.3 103 l2.7 6.5 M46.7 103 l-2.7 6.5 M25 81.3 l-6.5 2.7 M25 50.7 l-6.5 -2.7 M46.7 29 l-2.7 -6.5" stroke-width="1.4" />
+  <circle data-draw pathLength="1" cx="132" cy="66" r="18" stroke-width="1" />
+  <circle cx="132" cy="66" r="3" stroke-width=".9" />
+  <path d="M132 48 l0 -5 M150 66 l5 0 M132 84 l0 5 M114 66 l-4 0 M144.7 53.3 l3.5 -3.5 M144.7 78.7 l3.5 3.5 M119.3 78.7 l-3.5 3.5 M119.3 53.3 l-3.5 -3.5" stroke-width="1.3" />
+  <path d="M62 66 L132 66" stroke-width=".5" stroke-dasharray="2 3" opacity=".7" />
+  <path d="M40 112 C 50 118, 74 118, 84 112" stroke-width=".8" />
+  <path d="M84 112 l-4 -3 m4 3 l-5 1" stroke-width=".8" />
+</svg>
+
+<!-- 3. A leader: a loose curved line from a note to the thing it is about.
+        Stretch it with width and height, it uses preserveAspectRatio="none".
+        It does not take data-draw: a dash on a non-scaling stroke draws with gaps. -->
+<svg class="ms-sketch" viewBox="0 0 120 40" width="120" height="40" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+  <path d="M2 34 C 30 36, 52 8, 112 6" stroke-width="1" vector-effect="non-scaling-stroke" />
+  <path d="M104 2.5 L113 6 L105 10.5" stroke-width="1" vector-effect="non-scaling-stroke" />
+</svg>
+
+<!-- 4. An ink blot, the accident every working sheet has. Use at most one. -->
+<svg viewBox="0 0 60 50" width="42" height="35" aria-hidden="true">
+  <path d="M18 10 C 26 2, 40 6, 42 15 C 50 16, 54 26, 46 31 C 48 40, 36 46, 28 40 C 20 46, 8 40, 12 31 C 4 27, 8 14, 18 10 Z" fill="#6b4a30" opacity=".55" />
+  <circle cx="51" cy="40" r="2.2" fill="#6b4a30" opacity=".45" />
+  <circle cx="8" cy="8" r="1.4" fill="#6b4a30" opacity=".4" />
+</svg>
+
+<!-- 5. Rays: a large body, a small one, and the lines of light between them,
+        with points named by letters, after the Codex Leicester studies of
+        earthshine. Good for anything about sources, flows, reach or sync.
+        The letters are part of the drawing, so they stay inside the svg. -->
+<svg class="ms-sketch" viewBox="0 0 220 130" width="220" height="130" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+  <circle data-draw pathLength="1" cx="168" cy="62" r="40" stroke-width="1.1" />
+  <circle data-draw pathLength="1" cx="40" cy="78" r="11" stroke-width="1" />
+  <path d="M40 67 L168 22 M40 89 L168 102 M40 67 L168 102 M40 89 L168 22" stroke-width=".6" />
+  <path d="M29 78 L208 62" stroke-width=".5" stroke-dasharray="2 3" opacity=".7" />
+  <path d="M40 67 A 11 11 0 0 0 40 89 Z" fill="currentColor" fill-opacity=".28" stroke="none" />
+  <path d="M46 70 L52 71 M46 74 L54 74.5 M46 78 L55 78 M46 82 L54 81.5 M46 86 L52 85" stroke-width=".5" opacity=".7" />
+  <g font-family="IM Fell English, Georgia, serif" font-style="italic" font-size="10" fill="currentColor" stroke="none">
+    <text x="165" y="16">a</text><text x="165" y="114">b</text><text x="22" y="82">c</text><text x="196" y="58">d</text>
+  </g>
+</svg>
+
+<!-- 6. A solid: a pyramid on a square base, its shadowed faces hatched, after
+        the Codex Forster studies of solids. Good beside data, builds, layers. -->
+<svg class="ms-sketch" viewBox="0 0 120 140" width="120" height="140" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path data-draw pathLength="1" d="M60 10 L22 104 L66 124 L100 98 Z" stroke-width="1.1" />
+  <path d="M60 10 L66 124" stroke-width="1" />
+  <path d="M60 10 L48 92 L22 104 M48 92 L100 98" stroke-width=".5" stroke-dasharray="2 3" opacity=".6" />
+  <path d="M63 40 L73 33 M64 52 L80 41 M64 64 L86 49 M65 76 L92 57 M65 88 L97 66 M66 100 L99 77 M66 112 L100 88" stroke-width=".6" opacity=".75" />
+  <path d="M10 128 C 40 131, 80 132, 112 127" stroke-width=".8" />
+</svg>

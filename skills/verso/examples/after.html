@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project settings, manuscript</title>
+<link rel="stylesheet" href="../assets/manuscript.css" />
+<style>
+  /* Only the page around the converted portion. It is left as it was. */
+  body { margin: 0; background: #f4f5f7; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+  /* Local layout for this example. */
+  .masthead { display: flex; align-items: center; gap: 1rem; }
+  .monogram {
+    flex: none; width: 3.1rem; height: 3.1rem; display: grid; place-items: center;
+    font-family: var(--ms-font-display); font-size: 1.9rem; color: var(--ms-sanguine);
+    position: relative;
+  }
+  .monogram::before {
+    content: ""; position: absolute; inset: 0; border: 1.2px solid var(--ms-ink-2);
+    border-radius: 48% 52% 50% 46% / 52% 46% 54% 48%; filter: url(#ms-line);
+  }
+  .stack { display: grid; gap: 2rem; }
+  .fields { display: grid; gap: 1.1rem; }
+  .actions { display: flex; gap: 1.25rem; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+  .danger { display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .danger p { margin: 0; max-width: 34ch; }
+  .sketch-row { display: flex; justify-content: center; }
+  .leader { width: 100%; height: 2.2rem; display: block; }
+  .ms-ledger .value { font-variant-numeric: oldstyle-nums tabular-nums; }
+</style>
+</head>
+<body>
+  <!-- Mounted once, before the themed portion. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ms-ink" x="-2%" y="-10%" width="104%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="3" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ms-line" x="-4%" y="-8%" width="108%" height="116%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ms-deckle" x="-3%" y="-3%" width="106%" height="106%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="2" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="ms-wash" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" seed="5" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="22" xChannelSelector="R" yChannelSelector="G" result="d" />
+        <feGaussianBlur in="d" stdDeviation="1.4" />
+      </filter>
+    </defs>
+  </svg>
+
+  <main class="wrap">
+    <section class="ms-scope ms-page" aria-labelledby="title">
+      <div class="ms-folio">
+        <!-- The main column -->
+        <div class="stack">
+          <header class="masthead">
+            <div class="monogram" aria-hidden="true">A</div>
+            <div>
+              <h1 id="title" class="ms-title">Atlas</h1>
+              <p class="ms-caption" style="margin:.2rem 0 0">Project settings</p>
+            </div>
+          </header>
+
+          <div class="ms-frame ms-tilt-s" style="max-width: 30rem">
+            <ul class="ms-ledger">
+              <li><span>Deploys this month</span><span class="ms-leader" aria-hidden="true"></span><span class="value">128</span></li>
+              <li><span>Uptime</span><span class="ms-leader" aria-hidden="true"></span><span class="value">99.98%</span></li>
+              <li><span>Average build</span><span class="ms-leader" aria-hidden="true"></span><span class="value">42s</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="ms-heading">General</h2>
+            <div class="fields">
+              <div class="ms-field">
+                <label class="ms-label" for="name">Project name</label>
+                <input class="ms-input" id="name" type="text" value="Atlas" />
+              </div>
+              <div class="ms-field">
+                <label class="ms-label" for="desc">Description</label>
+                <textarea class="ms-input" id="desc" placeholder="What is this project for?"></textarea>
+              </div>
+              <label class="ms-check"><input type="checkbox" checked /> Deploy every push to main</label>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="ms-heading">Members</h2>
+            <ul class="ms-ledger" style="max-width: 30rem">
+              <li><span>Sanyam Punia</span><span class="ms-leader" aria-hidden="true"></span><span class="ms-circled ms-circled-sanguine">Owner</span></li>
+              <li><span>Ada Lovelace</span><span class="ms-leader" aria-hidden="true"></span><span class="ms-circled">Admin</span></li>
+              <li><span>Luca Pacioli</span><span class="ms-leader" aria-hidden="true"></span><span class="ms-circled">Viewer</span></li>
+            </ul>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="ms-button ms-button-quiet">Cancel</button>
+            <button type="button" class="ms-button ms-button-primary ms-cast">Save changes</button>
+          </div>
+        </div>
+
+        <!-- The margin -->
+        <aside class="ms-margin" aria-label="Notes">
+          <div class="sketch-row ms-wash">
+            <svg class="ms-sketch" viewBox="0 0 180 130" width="170" height="123" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+              <circle data-draw pathLength="1" cx="62" cy="66" r="40" stroke-width="1.1" />
+              <circle cx="62" cy="66" r="31" stroke-width=".7" />
+              <circle cx="62" cy="66" r="4" stroke-width="1" />
+              <path d="M62 26 l0 -7 M90.3 37.7 l5 -5 M102 66 l7 0 M90.3 94.3 l5 5 M62 106 l0 7 M33.7 94.3 l-5 5 M22 66 l-7 0 M33.7 37.7 l-5 -5 M77.3 29 l2.7 -6.5 M99 50.7 l6.5 -2.7 M99 81.3 l6.5 2.7 M77.3 103 l2.7 6.5 M46.7 103 l-2.7 6.5 M25 81.3 l-6.5 2.7 M25 50.7 l-6.5 -2.7 M46.7 29 l-2.7 -6.5" stroke-width="1.4" />
+              <circle data-draw pathLength="1" cx="132" cy="66" r="18" stroke-width="1" />
+              <circle cx="132" cy="66" r="3" stroke-width=".9" />
+              <path d="M132 48 l0 -5 M150 66 l5 0 M132 84 l0 5 M114 66 l-4 0 M144.7 53.3 l3.5 -3.5 M144.7 78.7 l3.5 3.5 M119.3 78.7 l-3.5 3.5 M119.3 53.3 l-3.5 -3.5" stroke-width="1.3" />
+              <path d="M62 66 L132 66" stroke-width=".5" stroke-dasharray="2 3" opacity=".7" />
+              <path d="M40 112 C 50 118, 74 118, 84 112" stroke-width=".8" />
+              <path d="M84 112 l-4 -3 m4 3 l-5 1" stroke-width=".8" />
+            </svg>
+          </div>
+
+          <svg class="ms-sketch leader" viewBox="0 0 120 40" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+            <path d="M108 36 C 80 34, 46 10, 6 6" stroke-width="1" vector-effect="non-scaling-stroke" />
+            <path d="M14 2 L5 6 L13 11" stroke-width="1" vector-effect="non-scaling-stroke" />
+          </svg>
+          <p class="ms-note ms-tilt-l" style="margin:0">Last deployed two hours ago.</p>
+
+          <p class="ms-mirror" aria-hidden="true" style="margin:0">
+            ricordati di fare la misura della ruota grande e del rocchetto, e quante volte gira
+            l'uno per ogni giro dell'altro, e scrivi il numero nel margine
+          </p>
+        </aside>
+      </div>
+
+      <hr class="ms-rule" />
+
+      <div class="ms-folio">
+        <div class="ms-repair">
+          <div class="ms-frame ms-frame-sanguine danger">
+            <p>Deleting this project removes every deploy. This cannot be undone.</p>
+            <button type="button" class="ms-button">Delete project</button>
+          </div>
+        </div>
+        <p class="ms-mirror" aria-hidden="true" style="margin:0">
+          cose da portare: le carte, il compasso, la squadra, li occhiali, e la penna nova
+        </p>
+      </div>
+    </section>
+  </main>
+  <script>
+    const paper = new URLSearchParams(location.search).get("paper");
+    if (paper) document.querySelector(".ms-scope").dataset.msPaper = paper;
+  </script>
+</body>
+</html>
