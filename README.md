@@ -14,7 +14,7 @@ You point it at one component. The skill changes how that component looks. The D
 npx skills add sanyampunia/verso
 ```
 
-The command copies the skill into `.agents/skills/verso` and links it into `.claude/skills`.
+The command asks which agents to install for, then copies the skill into each agent's folder, such as `.claude/skills/verso`. To install for Claude Code with no questions, add `-a claude-code -y`.
 
 ## Use
 
